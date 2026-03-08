@@ -1,1 +1,0 @@
-# CMP720-Data-Movement-Strategy-Selection-for-AES-ECDSA-Accelerator-Workloads-on-an-STM32H7-Series-MCU
