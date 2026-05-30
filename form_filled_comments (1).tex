@@ -1,0 +1,164 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{enumitem}
+
+\tcbuselibrary{skins, breakable}
+
+% --- Colors (SafePulse lab theme) ---
+\definecolor{darkblue}{HTML}{1B3A5C}
+\definecolor{medblue}{HTML}{2E6DA4}
+\definecolor{lightblue}{HTML}{D5E8F0}
+\definecolor{lightgray}{HTML}{F2F2F2}
+\definecolor{fillyellow}{HTML}{FFF9E6}
+
+% --- Page style ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\itshape\textcolor{gray}{CMP\,720 --- Midterm Project Presentations Peer Evaluation (ASELSAN)}}
+\fancyfoot[C]{\small\textcolor{gray}{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+
+% --- Section formatting ---
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0pt}{-12pt plus -4pt minus -2pt}{6pt plus 2pt}{\Large\bfseries\color{darkblue}}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0pt}{-10pt plus -3pt minus -1pt}{4pt plus 1pt}{\large\bfseries\color{medblue}}}
+\makeatother
+
+% --- Info box ---
+\newtcolorbox{infobox}{
+  colback=lightblue!50, colframe=medblue,
+  boxrule=0.5pt, leftrule=4pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+
+% --- Evaluation box ---
+\newtcolorbox{evalbox}{
+  colback=fillyellow, colframe=gray!40, boxrule=0.4pt,
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  height=5cm, valign=top
+}
+
+% --- Group evaluation command ---
+\newcommand{\groupeval}[3]{%
+  \subsection*{\textcolor{darkblue}{Group #1}\hfill{\normalsize\textcolor{gray}{#2}}}
+  \vspace{-2pt}
+  {\small\textbf{Project Title:} \textit{#3}}
+  \vspace{4pt}
+
+  \begin{evalbox}
+  \end{evalbox}
+  \vspace{0.4cm}
+}
+
+% --- Filled group evaluation command ---
+\newcommand{\groupevalfilled}[4]{%
+  \subsection*{\textcolor{darkblue}{Group #1}\hfill{\normalsize\textcolor{gray}{#2}}}
+  \vspace{-2pt}
+  {\small\textbf{Project Title:} \textit{#3}}
+  \vspace{4pt}
+
+  \begin{evalbox}
+  \small #4
+  \end{evalbox}
+  \vspace{0.4cm}
+}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{center}
+  \vspace*{0.3cm}
+  {\Large\bfseries\color{medblue} Hacettepe University \textbar\ Computer Engineering}\\[4pt]
+  {\Large\bfseries\color{medblue} CMP 720 EMBEDDED SYSTEMS DESIGN}\\[4pt]
+  {\normalsize\color{gray} Spring 2026}\\[20pt]
+  {\LARGE\bfseries\color{darkblue} Midterm Project Peer Evaluation Form (ASELSAN)}\\[24pt]
+
+  \begin{tabular}{ll}
+    \textbf{Student Name:} & \textbf{Süleyman Ege KARAKAYA}\\[6pt]
+    \textbf{Student ID:} & \textbf{N25223480} \\
+  \end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+
+% ============================================================
+\section*{Instructions}
+% ============================================================
+
+\begin{infobox}
+For each project, briefly summarize the work and provide your evaluation \textbf{individually (not as a group)}.
+Your response should reflect your understanding of the problem, methodology, and evaluation plan, and include critical insights, strengths, limitations, and possible improvements. Skip your own group's evaluation and simply state that it is your group.
+\end{infobox}
+
+\begin{infobox}
+    \textbf{Students are required to evaluate only the projects presented within their own class group (Hacettepe or ASELSAN).}
+\end{infobox}
+
+\vspace{4pt}
+\textbf{\textcolor{darkblue}{Guiding points}} (address in one coherent paragraph):
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+    \item What problem is being solved, why is it important, and what are the most important embedded system design considerations for this problem (e.g., timing, reliability, energy, safety, security, scalability, etc.)?
+    \item What is the main idea of the proposed methodology?
+    \item What do you think are the strengths and limitations of the approach?
+    \item Is there anything you would improve or do differently?
+    \item What is the most critical or challenging component?
+    \item Is the evaluation plan sufficient? What, if anything, is missing?
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% GROUP ENTRIES
+% ============================================================
+
+\groupevalfilled{5}{Metin Irkıçatal, Anıl Arda}
+{Edge-AI Based Smart Access Control System}
+{The main idea is to build a secure, cloud-independent biometric access control system on a constrained STM32H7-based edge device. The presentation addresses the privacy, latency, and dependency problems of cloud biometrics by keeping face recognition, decision logic, and GPIO-based access control fully local. Its strongest point is the practical embedded focus: TFLite Micro, FreeRTOS scheduling, INT8 quantization, data augmentation, and transfer learning are combined to fit the model into limited flash and SRAM. I would expect the final work to demonstrate reliable access decisions under 500 ms, low memory usage, and acceptable false accept / false reject rates in live simulation.}
+
+\groupevalfilled{7}{Ahmet Yiğitalp Demirci}
+{Real-Time Energy-Constrained UAV Optimization}
+{This project focuses on making UAV missions safer and more efficient by predicting energy needs instead of waiting for a low-battery emergency. The main idea is to adjust the drone’s velocity in real time so it can balance two goals: saving energy and completing the mission on time. Its strongest point is the practical system design, where the flight controller keeps handling low-level flight while a companion STM32-based module runs the energy-time optimizer. What makes it different is that it replaces a simple static return-to-home threshold with a predictive decision mechanism based on remaining energy, required energy, and a safety reserve. In the final work project aims to show that the system can reduce unnecessary return-to-home triggers, keep execution latency low, and improve mission completion without sacrificing safety.}
+
+\groupevalfilled{8}{Sami Enes Yılmaz, Kadir Emre Avcı}
+{SmartAquaria System}
+{The main idea of this project is to design a portable, layered embedded life-support controller for aquarium monitoring and actuation purposes. The project  addresses two problems at once: unstable biological conditions such as temperature and dissolved oxygen changes, and poorly structured embedded code that is tightly coupled to hardware. Its strongest point is the architecture-first approach, using dependency inversion, strict layering, a single-threaded FSM, mock-based simulation, and a very low-memory display strategy. What makes it different is that the same business logic can run both in simulation and on real hardware without code changes. Project will be strong if it can demonstrate stable sampling, reliable warning/alarm transitions, low RAM usage, and fail-safe actuator behavior under faulty sensor inputs.}
+
+\groupevalfilled{9}{Mehmethan Ayrım}
+{Energy-Aware Mixed-Criticality Scheduling}
+{This project focuses on reducing energy consumption in mixed-criticality embedded systems, where timing and reliability are extremely important. The main idea is to use a dynamic frequency adjustment method so the processor does not always run at full speed when it is not necessary. By combining EDF-VD scheduling with DVFS, the system tries to save energy while still protecting the deadlines of high-criticality tasks. The strongest part of the work is that it does not only aim for performance, but also tries to keep the system safe and predictable. The reported energy saving potential is promising, but the approach still seems a bit theoretical because it is tested mainly in MATLAB with an ideal single-core model. I would expect the final version to show how well this method works on real hardware, especially with discrete frequency levels, multi-core effects, and actual power measurements.}
+
+\groupevalfilled{10}{İrem Gül Subaşı}
+{Fault Injection and Resilience Profiling of Lightweight Transformers}
+{The core idea is to identify which layers, tokens, and bit positions of a quantized lightweight transformer are most vulnerable to hardware faults. This is valuable because full hardware protection such as TMR is too costly for FPGA-based inference, so selective protection is a more practical solution. The project explains the golden-versus-corrupted behavior clearly and gives a strong motivation for vulnerability ranking. I hope to see the final results to directly indicate which pipeline stages should be hardened first.}
+
+\groupevalfilled{11}{Süleyman Ege Karakaya}
+{Adaptive Data-Movement Strategy for Crypto Accelerators}
+{This was my project}
+
+\groupevalfilled{13}{Emre Doğan, Yavuz Selim Kızıltaş}
+{Optimization of Edge AI Pipeline on TDA4VM}
+{This project focuses on optimizing a real-time edge AI inference pipeline on the heterogeneous TDA4VM SoC. The main contribution is not only INT8 model conversion, but also memory placement, DMA prefetching, stage overlap, and heterogeneous core allocation. It solves the latency and memory-bandwidth bottleneck problem while trying to preserve detection accuracy. I would expect the evaluation to include measured FPS, end-to-end latency, DDR traffic reduction, and mAP loss compared with the FP32 baseline.}
+
+\groupevalfilled{16}{Yasin Arslan, Süleyman Sertaç Üst}
+{Real-Time Audio Pipeline Analysis on Heterogeneous SoCs}
+{This project's main idea is to make Linux-based audio pipelines more predictable for real-time or mission-critical use cases. It addresses the gap between Linux's non-deterministic scheduling behavior and strict audio latency requirements. The strongest part is the dual methodology: empirical simulation combined with a predictive latency budget. What makes it different is the focus on end-to-end application-level latency rather than only kernel-level metrics, and I would expect the final work to show worst-case jitter and deadline-miss improvements under stress.}
+
+\groupevalfilled{18}{Hüseyin Eren Doğan}
+{EdgeRAG: Offline RAG on Embedded Systems}
+{The main idea behind this project is to bring RAG-based question answering to an offline, resource-constrained ARM environment. The project solves the cloud-dependency problem for privacy-critical and air-gapped embedded systems. Its strongest aspect is the explicit memory-budgeted pipeline using QEMU limits, quantized LLM inference, FAISS retrieval, and staged unloading. I would expect the final work to demonstrate whether acceptable QA quality can be achieved under strict 2 GB RAM and latency constraints.}
+
+
+
+\end{document}
